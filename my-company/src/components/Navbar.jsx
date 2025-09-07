@@ -5,9 +5,9 @@ function Navbar() {
   const navStyle = {
     display: 'flex',
     alignItems: 'center',
-    gap: '20px',
+    justifyContent: 'space-between', // ✅ correct property
     padding: '12px 20px',
-    background: '#0b3d91',
+    backgroundColor: '#0b3d91', // ✅ backgroundColor instead of background
     color: '#fff',
     boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
   };
@@ -18,7 +18,7 @@ function Navbar() {
   return (
     <nav style={navStyle}>
       <div style={brand}>My Company</div>
-      <div style={{ marginLeft: 'auto', display: 'flex', gap: '14px' }}>
+      <div style={{ display: 'flex', gap: '14px' }}>
         <Link to="/" style={linkStyle}>Home</Link>
         <Link to="/about" style={linkStyle}>About</Link>
         <Link to="/services" style={linkStyle}>Services</Link>
