@@ -4,21 +4,19 @@ function UserProfile(props) {
   return (
     <div
       style={{
-        border: '2px solid #ccc',
-        borderRadius: '10px',
-        padding: '20px',
-        margin: '20px auto',
-        maxWidth: '400px',
+        border: '1px solid gray',
+        padding: '15px',
+        margin: '15px',
+        borderRadius: '8px',
         backgroundColor: '#f0f8ff',
-        boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+        maxWidth: '400px',
       }}
     >
       <h2
         style={{
           color: '#1e90ff',
-          fontSize: '26px',
+          fontSize: '24px',
           marginBottom: '10px',
-          textAlign: 'center',
         }}
       >
         {props.name}
@@ -26,16 +24,15 @@ function UserProfile(props) {
       <p
         style={{
           fontSize: '18px',
-          color: '#333',
           marginBottom: '8px',
         }}
       >
-        Age: <span style={{ fontWeight: 'bold', color: '#000' }}>{props.age}</span>
+        Age: <span style={{ fontWeight: 'bold' }}>{props.age}</span>
       </p>
       <p
         style={{
           fontSize: '16px',
-          color: '#555',
+          color: '#333',
           lineHeight: '1.5',
         }}
       >
