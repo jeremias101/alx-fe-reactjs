@@ -4,7 +4,7 @@ function UserProfile(props) {
   return (
     <div
       style={{
-        border: '1px solid blue',
+        border: '1px solid gray',
         padding: '15px',
         margin: '15px',
         borderRadius: '8px',
@@ -43,4 +43,3 @@ function UserProfile(props) {
 }
 
 export default UserProfile;
-
