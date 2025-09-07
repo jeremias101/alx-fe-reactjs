@@ -1,9 +1,46 @@
+import React from 'react';
+
 function UserProfile(props) {
   return (
-    <div style={{ border: '1px solid gray', padding: '15px', margin: '15px', borderRadius: '8px', backgroundColor: '#f9f9f9' }}>
-      <h2 style={{ color: 'blue', fontSize: '24px' }}>{props.name}</h2>
-      <p>Age: <span style={{ fontWeight: 'bold' }}>{props.age}</span></p>
-      <p>Bio: {props.bio}</p>
+    <div
+      style={{
+        border: '2px solid #ccc',
+        borderRadius: '10px',
+        padding: '20px',
+        margin: '20px auto',
+        maxWidth: '400px',
+        backgroundColor: '#f0f8ff',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+      }}
+    >
+      <h2
+        style={{
+          color: '#1e90ff',
+          fontSize: '26px',
+          marginBottom: '10px',
+          textAlign: 'center',
+        }}
+      >
+        {props.name}
+      </h2>
+      <p
+        style={{
+          fontSize: '18px',
+          color: '#333',
+          marginBottom: '8px',
+        }}
+      >
+        Age: <span style={{ fontWeight: 'bold', color: '#000' }}>{props.age}</span>
+      </p>
+      <p
+        style={{
+          fontSize: '16px',
+          color: '#555',
+          lineHeight: '1.5',
+        }}
+      >
+        Bio: {props.bio}
+      </p>
     </div>
   );
 }
