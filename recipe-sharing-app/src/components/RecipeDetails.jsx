@@ -1,35 +1,20 @@
-// src/components/RecipeDetails.jsx
 import React from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useRecipeStore } from '../stores/recipeStore';
-import DeleteRecipeButton from './DeleteRecipeButton';
+import useRecipeStore from './recipeStore';
 
-const RecipeDetails = () => {
-  const { id } = useParams();
-  const recipeId = Number(id);
-  const recipe = useRecipeStore((s) => s.recipes.find((r) => r.id === recipeId));
-  const navigate = useNavigate();
+const FavoriteButton = ({ recipeId }) => {
+  const { favorites, addFavorite, removeFavorite } = useRecipeStore();
 
-  if (!recipe) {
-    return (
-      <div>
-        <p>Recipe not found.</p>
-        <button onClick={() => navigate('/')}>Back</button>
-      </div>
-    );
-  }
+  const isFavorite = favorites.includes(recipeId);
 
   return (
-    <div style={{ padding: 12, background: '#fff', borderRadius: 8, border: '1px solid #e0e0e0' }}>
-      <h2>{recipe.title}</h2>
-      <p>{recipe.description}</p>
-
-      <div style={{ marginTop: 12 }}>
-        <Link to={`/edit/${recipe.id}`} style={{ marginRight: 10 }}>Edit</Link>
-        <DeleteRecipeButton recipeId={recipe.id} onDeleted={() => navigate('/')} />
-      </div>
-    </div>
+    <button
+      onClick={() =>
+        isFavorite ? removeFavorite(recipeId) : addFavorite(recipeId)
+      }
+    >
+      {isFavorite ? '💔 Remove Favorite' : '❤️ Add to Favorites'}
+    </button>
   );
 };
 
-export default RecipeDetails;
+export default FavoriteButton;
