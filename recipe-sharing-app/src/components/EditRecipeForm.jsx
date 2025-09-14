@@ -20,8 +20,8 @@ const EditRecipeForm = () => {
     }
   }, [recipe]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault(); // ✅ explicit preventDefault
     if (!title.trim() || !description.trim()) {
       alert('Please fill title and description');
       return;
@@ -37,8 +37,19 @@ const EditRecipeForm = () => {
   return (
     <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 8, maxWidth: 600 }}>
       <h2>Edit Recipe</h2>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" style={{ padding: 8 }} />
-      <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={4} placeholder="Description" style={{ padding: 8 }} />
+      <input
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+        style={{ padding: 8 }}
+      />
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        rows={4}
+        placeholder="Description"
+        style={{ padding: 8 }}
+      />
       <div>
         <button type="submit" style={{ marginRight: 8 }}>Save</button>
         <button type="button" onClick={() => navigate(-1)}>Cancel</button>
