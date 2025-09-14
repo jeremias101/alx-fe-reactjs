@@ -1,0 +1,19 @@
+/* src/index.css */
+:root {
+  --bg: #f7f9fc;
+  --card: #ffffff;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: #222;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: #e6e9ef;
+  margin: 16px 0;
+}
