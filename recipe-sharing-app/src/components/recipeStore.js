@@ -1,36 +1,24 @@
-// src/stores/recipeStore.js
-import create from 'zustand';
+// src/components/recipeStore.js
+import { create } from 'zustand';
 
-const PERSIST_KEY = 'recipes_v1';
+const useRecipeStore = create((set) => ({
+  recipes: [],
+  searchTerm: '',
+  filteredRecipes: [],
 
-export const useRecipeStore = create((set, get) => ({
-  recipes: JSON.parse(localStorage.getItem(PERSIST_KEY) || '[]'),
-
+  // actions
   addRecipe: (newRecipe) =>
-    set((state) => {
-      const next = [...state.recipes, newRecipe];
-      localStorage.setItem(PERSIST_KEY, JSON.stringify(next));
-      return { recipes: next };
-    }),
+    set((state) => ({ recipes: [...state.recipes, newRecipe] })),
 
-  updateRecipe: (updatedRecipe) =>
+  setRecipes: (recipes) => set({ recipes }),
+
+  setSearchTerm: (term) =>
     set((state) => {
-      const next = state.recipes.map((r) =>
-        r.id === updatedRecipe.id ? { ...r, ...updatedRecipe } : r
+      const filtered = state.recipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(term.toLowerCase())
       );
-      localStorage.setItem(PERSIST_KEY, JSON.stringify(next));
-      return { recipes: next };
+      return { searchTerm: term, filteredRecipes: filtered };
     }),
-
-  deleteRecipe: (id) =>
-    set((state) => {
-      const next = state.recipes.filter((r) => r.id !== id);
-      localStorage.setItem(PERSIST_KEY, JSON.stringify(next));
-      return { recipes: next };
-    }),
-
-  setRecipes: (recipes) => {
-    localStorage.setItem(PERSIST_KEY, JSON.stringify(recipes));
-    set({ recipes });
-  },
 }));
+
+export default useRecipeStore;
