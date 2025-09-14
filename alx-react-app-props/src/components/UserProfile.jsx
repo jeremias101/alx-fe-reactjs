@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../contexts/UserContext'; // adjust the path if needed
 
-function UserProfile(props) {
+function UserProfile() {
+  const user = useContext(UserContext);
+
   return (
     <div
       style={{
@@ -19,7 +22,7 @@ function UserProfile(props) {
           marginBottom: '10px',
         }}
       >
-        {props.name}
+        {user.name}
       </h2>
       <p
         style={{
@@ -27,19 +30,8 @@ function UserProfile(props) {
           marginBottom: '8px',
         }}
       >
-        Age: <span style={{ fontWeight: 'bold' }}>{props.age}</span>
+        Age: <span style={{ fontWeight: 'bold' }}>{user.age}</span>
       </p>
       <p
         style={{
-          fontSize: '16px',
-          color: '#333',
-          lineHeight: '1.5',
-        }}
-      >
-        Bio: {props.bio}
-      </p>
-    </div>
-  );
-}
-
-export default UserProfile;
+          fontSize: '
