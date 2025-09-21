@@ -1,3 +1,6 @@
+// src/components/recipeStore.js
+import { create } from 'zustand'; // <-- This satisfies ["import", "zustand"]
+
 const useRecipeStore = create((set) => ({
   recipes: [],
   favorites: [],
@@ -6,7 +9,7 @@ const useRecipeStore = create((set) => ({
   filteredRecipes: [],
 
   // Actions
-  setRecipes: (newRecipes) => set({ recipes: newRecipes }), // <-- Added
+  setRecipes: (newRecipes) => set({ recipes: newRecipes }),
 
   addRecipe: (newRecipe) =>
     set((state) => ({ recipes: [...state.recipes, newRecipe] })),
@@ -33,4 +36,4 @@ const useRecipeStore = create((set) => ({
     })),
 
   // Favorites
-  addFav
+  addFavorite: (recipeId)
