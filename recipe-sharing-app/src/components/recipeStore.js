@@ -1,5 +1,3 @@
-import { create } from 'zustand';
-
 const useRecipeStore = create((set) => ({
   recipes: [],
   favorites: [],
@@ -8,6 +6,8 @@ const useRecipeStore = create((set) => ({
   filteredRecipes: [],
 
   // Actions
+  setRecipes: (newRecipes) => set({ recipes: newRecipes }), // <-- Added
+
   addRecipe: (newRecipe) =>
     set((state) => ({ recipes: [...state.recipes, newRecipe] })),
 
@@ -33,39 +33,4 @@ const useRecipeStore = create((set) => ({
     })),
 
   // Favorites
-  addFavorite: (recipeId) =>
-    set((state) => ({
-      favorites: [...state.favorites, recipeId],
-    })),
-
-  removeFavorite: (recipeId) =>
-    set((state) => ({
-      favorites: state.favorites.filter((id) => id !== recipeId),
-    })),
-
-  // Recommendations (mock logic: recommend recipes with same word in title)
-  generateRecommendations: () =>
-    set((state) => {
-      if (state.favorites.length === 0) return { recommendations: [] };
-
-      const favoriteRecipes = state.recipes.filter((recipe) =>
-        state.favorites.includes(recipe.id)
-      );
-
-      const keywords = favoriteRecipes
-        .map((r) => r.title.split(' ')[0].toLowerCase())
-        .filter(Boolean);
-
-      const recommended = state.recipes.filter(
-        (recipe) =>
-          !state.favorites.includes(recipe.id) &&
-          keywords.some((kw) =>
-            recipe.title.toLowerCase().includes(kw.toLowerCase())
-          )
-      );
-
-      return { recommendations: recommended };
-    }),
-}));
-
-export default useRecipeStore;
+  addFav
