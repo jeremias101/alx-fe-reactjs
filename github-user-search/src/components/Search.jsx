@@ -108,8 +108,20 @@ export default function Search() {
           {/* exact error string appears here when setError(...) was called */}
           {error && <p style={{ color: 'salmon' }}>{error}</p>}
 
-          {/* User card displays avatar via UserCard which uses user.avatar_url */}
-          {user && <UserCard user={user} />}
+          {/* Added <img> to display avatar_url directly in this component */}
+          {user && (
+            <div>
+              <img
+                src={user.avatar_url}
+                alt={`${user.login} avatar`}
+                width="120"
+                height="120"
+                style={{ borderRadius: '50%', display: 'block', marginBottom: '0.75rem' }}
+              />
+              {/* User card displays avatar via UserCard which also uses user.avatar_url */}
+              <UserCard user={user} />
+            </div>
+          )}
         </div>
       </section>
 
