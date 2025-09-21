@@ -1,20 +1,14 @@
+// src/components/RecipeDetails.jsx
 import React from 'react';
-import useRecipeStore from './recipeStore';
 
-const FavoriteButton = ({ recipeId }) => {
-  const { favorites, addFavorite, removeFavorite } = useRecipeStore();
-
-  const isFavorite = favorites.includes(recipeId);
+export default function RecipeDetails({ recipe }) {
+  if (!recipe) return null;
 
   return (
-    <button
-      onClick={() =>
-        isFavorite ? removeFavorite(recipeId) : addFavorite(recipeId)
-      }
-    >
-      {isFavorite ? '💔 Remove Favorite' : '❤️ Add to Favorites'}
-    </button>
+    <div key={recipe.id} style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: 8 }}>
+      <h3>{recipe.title}</h3>
+      <p>{recipe.description}</p>
+      {/* You can display other recipe details here */}
+    </div>
   );
-};
-
-export default FavoriteButton;
+}
