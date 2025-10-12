@@ -22,11 +22,12 @@ export default function HomePage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <header className="mb-6 flex items-center justify-between">
+      <header className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
+        {/* ✅ Added md:flex-row, md:items-center, md:justify-between for responsiveness */}
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
           Recipes
         </h1>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 mt-2 md:mt-0">
           Browse, discover and share your favorite recipes.
         </p>
       </header>
@@ -36,10 +37,10 @@ export default function HomePage() {
       ) : recipes.length === 0 ? (
         <div className="py-20 text-center text-gray-500">No recipes found.</div>
       ) : (
-        // ✅ Added container div below that includes hover, rounded, shadow
         <div className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200 p-6">
           <section>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* ✅ Added md:grid-cols-3 for responsive grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {recipes.map((recipe) => (
                 <RecipeCard key={recipe.id} recipe={recipe} />
               ))}
