@@ -65,3 +65,9 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+import RecipeDetail from './components/RecipeDetail';
+
+/* inside your <Routes> */
+<Route path="/recipe/:id" element={<RecipeDetail />} />
+
