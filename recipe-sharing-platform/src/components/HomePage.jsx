@@ -51,3 +51,30 @@ export default function HomePage() {
     </div>
   );
 }
+
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+export default function HomePage() {
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const url = new URL("../data.json", import.meta.url);
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load recipes");
+        return res.json();
+      })
+      .then((data) => setRecipes(data))
+      .catch((err) => {
+        console.error(err);
+        setRecipes([]);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <header className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
+        <h1 className="text-
