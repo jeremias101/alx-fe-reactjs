@@ -6,15 +6,14 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load the local JSON file using Vite-friendly import.meta.url
     const url = new URL('../data.json', import.meta.url);
     fetch(url)
-      .then(res => {
+      .then((res) => {
         if (!res.ok) throw new Error('Failed to load recipes');
         return res.json();
       })
-      .then(data => setRecipes(data))
-      .catch(err => {
+      .then((data) => setRecipes(data))
+      .catch((err) => {
         console.error(err);
         setRecipes([]);
       })
@@ -24,8 +23,12 @@ export default function HomePage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <header className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900">Recipes</h1>
-        <p className="text-sm text-gray-600">Browse, discover and share your favorite recipes.</p>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Recipes
+        </h1>
+        <p className="text-sm text-gray-600">
+          Browse, discover and share your favorite recipes.
+        </p>
       </header>
 
       {loading ? (
@@ -33,13 +36,16 @@ export default function HomePage() {
       ) : recipes.length === 0 ? (
         <div className="py-20 text-center text-gray-500">No recipes found.</div>
       ) : (
-        <section>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recipes.map(recipe => (
-              <RecipeCard key={recipe.id} recipe={recipe} />
-            ))}
-          </div>
-        </section>
+        // ✅ Added container div below that includes hover, rounded, shadow
+        <div className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200 p-6">
+          <section>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recipes.map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe} />
+              ))}
+            </div>
+          </section>
+        </div>
       )}
     </div>
   );
