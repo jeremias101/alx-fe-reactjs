@@ -29,9 +29,9 @@
   }
 }
 
+
 "dependencies": {
   "react": "...",
   "react-dom": "...",
   "react-router-dom": "^6.x.x"
 }
-

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import React, { useEffect, useState } from 'react';
 import RecipeCard from './RecipeCard';
 
@@ -51,6 +53,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";

@@ -12,7 +12,7 @@ export default function App() {
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
-import RecipeDetail from './pages/RecipeDetail';
+import RecipeDetail from './pages/RecipeDetails';
 import RecipeForm from './components/RecipeForm';
 
 const seed = [
@@ -70,4 +70,9 @@ import RecipeDetail from './components/RecipeDetail';
 
 /* inside your <Routes> */
 <Route path="/recipe/:id" element={<RecipeDetail />} />
+
+import AddRecipeForm from "./components/AddRecipeForm";
+
+/* inside <Routes> */
+<Route path="/add" element={<AddRecipeForm />} />
 
