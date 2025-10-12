@@ -48,3 +48,20 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage';
+// import other components (RecipeDetail, RecipeForm...) as needed
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      {/* header/nav can remain as is */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        {/* keep your other routes here */}
+      </Routes>
+    </BrowserRouter>
+  );
+}
