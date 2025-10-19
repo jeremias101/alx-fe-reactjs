@@ -33,3 +33,7 @@ function App() {
 }
 
 export default App
+
+import FormikForm from "./components/formikForm";
+
+<Route path="/formik" element={<FormikForm />} />
