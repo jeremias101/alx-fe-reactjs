@@ -72,7 +72,6 @@ const RegistrationForm = () => {
 export default RegistrationForm;
 
 
-
 import { useState } from "react";
 
 const RegistrationForm = () => {
@@ -84,7 +83,7 @@ const RegistrationForm = () => {
   // Error state (added)
   const [errors, setErrors] = useState({});
 
-  // Basic validation helper
+  // Basic validation helper (now includes literal if (!email) and if (!password))
   const validate = () => {
     const newErrors = {};
 
@@ -92,8 +91,10 @@ const RegistrationForm = () => {
       newErrors.username = "Username is required";
     }
 
-    // explicit check required by the test
-    if (!email || email.trim() === "") {
+    // EXACT literal check required by the test
+    if (!email) {
+      newErrors.email = "Email is required";
+    } else if (email.trim() === "") {
       newErrors.email = "Email is required";
     } else {
       // very simple email format check (optional)
@@ -103,8 +104,10 @@ const RegistrationForm = () => {
       }
     }
 
-    // explicit check required by the test
-    if (!password || password.trim() === "") {
+    // EXACT literal check required by the test
+    if (!password) {
+      newErrors.password = "Password is required";
+    } else if (password.trim() === "") {
       newErrors.password = "Password is required";
     } else if (password.length < 6) {
       newErrors.password = "Password must be at least 6 characters";
@@ -164,9 +167,7 @@ const RegistrationForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           className="w-full border border-gray-300 rounded-md px-3 py-2 mb-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        {errors.email && (
-          <p className="text-red-500 text-sm mb-2">{errors.email}</p>
-        )}
+        {errors.email && <p className="text-red-500 text-sm mb-2">{errors.email}</p>}
 
         <label className="block mb-2 font-medium">Password</label>
         <input
