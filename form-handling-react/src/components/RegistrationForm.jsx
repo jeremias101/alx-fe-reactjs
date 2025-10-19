@@ -1,97 +1,72 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export default function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+const RegistrationForm = () => {
+  // Step 1: Create state for each field
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.username.trim()) newErrors.username = "Username is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.password.trim()) newErrors.password = "Password is required";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
+  // Step 2: Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) return;
 
-    // Mock API submission
-    console.log("User registered:", formData);
+    if (!username || !email || !password) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
 
-    // Reset form
-    setFormData({ username: "", email: "", password: "" });
-    setErrors({});
+    const formData = { username, email, password };
+    console.log("Form Submitted:", formData);
+    alert("Registration successful!");
   };
 
+  // Step 3: Controlled form inputs
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
-      <h1 className="text-2xl font-bold mb-6 text-gray-900">Register</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Username */}
-        <div>
-          <label className="block text-gray-700 font-semibold mb-1">Username</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            className={`w-full border ${
-              errors.username ? "border-red-500" : "border-gray-300"
-            } rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
-          />
-          {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-6 rounded-lg shadow-md w-96"
+      >
+        <h2 className="text-2xl font-semibold mb-4 text-center">
+          User Registration
+        </h2>
 
-        {/* Email */}
-        <div>
-          <label className="block text-gray-700 font-semibold mb-1">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className={`w-full border ${
-              errors.email ? "border-red-500" : "border-gray-300"
-            } rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
-          />
-          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-        </div>
+        <label className="block mb-2 font-medium">Username</label>
+        <input
+          type="text"
+          placeholder="Enter your username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-        {/* Password */}
-        <div>
-          <label className="block text-gray-700 font-semibold mb-1">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className={`w-full border ${
-              errors.password ? "border-red-500" : "border-gray-300"
-            } rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
-          />
-          {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
-        </div>
+        <label className="block mb-2 font-medium">Email</label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-        {/* Submit */}
+        <label className="block mb-2 font-medium">Password</label>
+        <input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 transition"
+          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
         >
           Register
         </button>
       </form>
     </div>
   );
-}
+};
+
+export default RegistrationForm;
